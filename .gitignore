@@ -16,3 +16,8 @@ project/plugins/project/
 *.iml
 
 *.orig
+
+# Not a fan of Activator so far
+activator
+activator-launch-*.jar
+activator.bat

@@ -1,7 +1,14 @@
-import play.Project._
+name := """GarageSecurity"""
 
-name := "GarageSecurity"
+version := "1.0-SNAPSHOT"
 
-version := "1.0"
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-playScalaSettings
+scalaVersion := "2.10.2"
+
+libraryDependencies ++= Seq(
+  jdbc,
+  anorm,
+  cache,
+  ws
+)
