@@ -1,38 +1,18 @@
-*.py[cod]
+*.class
+*.log
 
-# C extensions
-*.so
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
 
-# Packages
-*.egg
-*.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
-__pycache__
+# Scala-IDE specific
+.scala_dependencies
 
-# Installer logs
-pip-log.txt
+.idea
+*.iml
 
-# Unit test / coverage reports
-.coverage
-.tox
-nosetests.xml
-
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-
-config.py
+*.orig

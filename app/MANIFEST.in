@@ -1,2 +1,0 @@
-recursive-include views *
-include pip_requirements.txt
