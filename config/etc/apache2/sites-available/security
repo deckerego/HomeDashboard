@@ -11,24 +11,25 @@
 
 	<Directory /srv/security/>
         	AuthType Basic
-                AuthName "Media Archive"
-                AuthBasicProvider external
-                AuthExternal pwauth
-                Require valid-user
+            AuthName "Media Archive"
+            AuthBasicProvider external
+            AuthExternal pwauth
+            Require valid-user
 
 		WSGIProcessGroup security 
         	WSGIApplicationGroup %{GLOBAL}
 	</Directory>
 
-	<Directory /srv/motion/>
-		Options Indexes Multiviews
+    ProxyPass / http://localhost:9000/
 
-		AuthType Basic
-		AuthName "Media Archive"
-		AuthBasicProvider external
-		AuthExternal pwauth
-		Require valid-user
-	</Directory>
+    <Location />
+            AuthType Basic
+            AuthName "Garage Security"
+            AuthBasicProvider external
+            AuthExternal pwauth
+            Require valid-user
+    </Location>
+
 
 	ProxyPass /camera0 http://localhost:8081
 
