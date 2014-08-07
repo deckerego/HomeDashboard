@@ -8,7 +8,7 @@
         <script type="text/javascript">
             function executeCommand() {
                 var request = new XMLHttpRequest();
-                request.open("PUT", "remote/0", true);
+                request.open("PUT", "/door/0/open", true);
                 request.send()
             }
         </script>
@@ -21,7 +21,7 @@
                     <div class="wrapper">
                         <div class="container">
                             <div class="canvas-container">
-                                <canvas id="camera0" width="1280" height="720"></canvas>
+                                <canvas id="webcam" width="1280" height="720"></canvas>
                             </div>
                         </div>
                     </div>
@@ -29,16 +29,16 @@
             </tr>
 
             <tr>
-                <td class="buttonCell" rowspan="2"><button onClick="executeCommand();">Open or Close Door</button></td>
-                <td class="buttonCell"><button onClick="window.location.assign('/media/');">Video Archives</button></td>
+                <td class="buttonCell" rowspan="2"><button onClick="executeCommand();">@Messages("console.button.door")</button></td>
+                <td class="buttonCell"><button onClick="window.location.assign('/media/');">@Messages("console.button.archives")</button></td>
             </tr>
             <tr>
-                <td class="buttonCell"><button onClick="window.location.assign('/monit/');">System Stats</button></td>
+                <td class="buttonCell"><button onClick="window.location.assign('/monit/');">@Messages("console.button.system")</button></td>
             </tr>
         </table>
 
         <script type="text/javascript">
-            renderCamera("camera0", "/camera0");
+            renderCamera("webcam", "/webcam");
         </script>
     </body>
 </html>

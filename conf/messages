@@ -1,0 +1,4 @@
+application.name = Garage Security
+console.button.door = Open or Close Door
+console.button.archives = Video Archives
+console.button.system = System Stats
