@@ -22,5 +22,9 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  ws
+  ws,
+  "com.pi4j" % "pi4j-core" % "0.0.5",
+  "com.typesafe.akka" % "akka-camel_2.10" % "2.3.4" withSources(),
+  "org.apache.camel" % "camel-scala" % "2.13.2" withSources(),
+  "org.apache.camel" % "camel-xmpp" % "2.13.2"
 )
