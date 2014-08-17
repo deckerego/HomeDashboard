@@ -21,3 +21,6 @@ project/plugins/project/
 activator
 activator-launch-*.jar
 activator.bat
+
+# I keep my configs to myself
+application.conf
