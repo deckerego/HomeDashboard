@@ -1,8 +1,13 @@
 package routebuilder
 
-import org.apache.camel.{Exchange, Processor}
 import org.apache.camel.builder.RouteBuilder
 import com.typesafe.config.ConfigFactory
+import akka.actor.ActorSystem
+import akka.camel.CamelExtension
+
+object CamelSystem {
+  val camel = CamelExtension(ActorSystem("camel-system"))
+}
 
 class DefaultRouteBuilder extends RouteBuilder {
   val conf = ConfigFactory.load();

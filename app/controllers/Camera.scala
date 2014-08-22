@@ -2,14 +2,15 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-
+import play.api.Play.current
 import scala.io.Source
 
 object Camera extends Controller {
-  val lastImagePath = Play.current.configuration.getString("motion.lastImagePath")
+  val mediaPath = Play.configuration.getString("motion.mediaPath")
+  val lastImagePath = mediaPath.getOrElse("") + Play.configuration.getString("motion.lastImageName").get
 
   def image = Action {
-    val file = Source.fromFile(lastImagePath.get)(scala.io.Codec.ISO8859)
+    val file = Source.fromFile(lastImagePath)(scala.io.Codec.ISO8859)
     val byteArray = file.map(_.toByte).toArray
     file.close()
 

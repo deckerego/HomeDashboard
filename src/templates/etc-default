@@ -11,7 +11,7 @@
 # -------------------------------------------------
 
 # Setting -Xmx and -Xms in Megabyte
--mem 256
+-mem 192
 
 # Setting -X directly (-J is stripped)
 # -J-X

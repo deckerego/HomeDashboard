@@ -1,14 +1,20 @@
 function renderCamera(canvasId, sourceUrl) {
-  var canvas = document.getElementById(canvasId);
-  var context = canvas.getContext('2d');
+    var canvas = document.getElementById(canvasId);
+    canvas.innerHTML = "Cannot Set HTML 2D Context";
 
-  var image = new Image();
-  image.src = sourceUrl
+    try {
+        var context = canvas.getContext('2d');
 
-  function drawFrame() {
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
-    window.requestAnimationFrame(drawFrame);
-  }
+        var image = new Image();
+        image.src = sourceUrl;
 
-  drawFrame();
+        function drawFrame() {
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            window.requestAnimationFrame(drawFrame);
+        }
+
+        drawFrame();
+    } catch(Throwable) {
+        canvas.innerHTML = "Cannot Set HTML 2D Context";
+    }
 }

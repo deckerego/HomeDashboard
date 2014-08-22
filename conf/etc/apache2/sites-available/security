@@ -1,31 +1,12 @@
 <VirtualHost *:80>
-	ServerAdmin webmaster@localhost
+    ServerAdmin webmaster@localhost
 
-	AddExternalAuth pwauth /usr/sbin/pwauth
-	SetExternalAuthMethod pwauth pipe
+    AddExternalAuth pwauth /usr/sbin/pwauth
+    SetExternalAuthMethod pwauth pipe
 
-	Alias /media /home/motion
-
-    <Directory /home/motion/>
-        Options Indexes Multiviews
-
-        AuthType Basic
-        AuthName "Media Archive"
-        AuthBasicProvider external
-        AuthExternal pwauth
-        Require valid-user
-    </Directory>
-
-
-	ProxyPass /webcam http://localhost:8081
-
-	<Location /webcam>
-		AuthType Basic
-        AuthName "Camera 0"
-        AuthBasicProvider external
-        AuthExternal pwauth
-        Require valid-user
-	</Location>
+    LogLevel warn
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 
     ProxyPass /monit http://localhost:2812
 
@@ -37,19 +18,23 @@
         Require valid-user
     </Location>
 
+    ProxyPass /webcam http://localhost:8081
+
+    <Location /webcam>
+        AuthType Basic
+        AuthName "Camera 0"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Location>
+
     ProxyPass / http://localhost:9000/
 
-	<Location />
+    <Location />
         AuthType Basic
         AuthName "Media Archive"
         AuthBasicProvider external
         AuthExternal pwauth
         Require valid-user
-	</Location>
-
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-
-	LogLevel warn
-
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </Location>
 </VirtualHost>
