@@ -1,0 +1,40 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+
+    AddExternalAuth pwauth /usr/sbin/pwauth
+    SetExternalAuthMethod pwauth pipe
+
+    LogLevel warn
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    ProxyPass /monit http://localhost:2812
+
+    <Location /monit>
+        AuthType Basic
+        AuthName "Service Uptime"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Location>
+
+    ProxyPass /webcam http://localhost:8081
+
+    <Location /webcam>
+        AuthType Basic
+        AuthName "Camera 0"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Location>
+
+    ProxyPass / http://localhost:9000/
+
+    <Location />
+        AuthType Basic
+        AuthName "Media Archive"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Location>
+</VirtualHost>

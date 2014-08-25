@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+        <script src="@routes.Assets.at("javascripts/mjpeg_viewer.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+            function executeCommand() {
+                var request = new XMLHttpRequest();
+                request.open("PUT", "/door/0/open", true);
+                request.send()
+            }
+        </script>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="canvas-container">
+                                <canvas id="webcam" width="1280" height="720"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="buttonCell" rowspan="2"><button onClick="executeCommand();">@Messages("console.button.door")</button></td>
+                <td class="buttonCell"><button onClick="window.location.assign('/archive');">@Messages("console.button.archives")</button></td>
+            </tr>
+            <tr>
+                <td class="buttonCell"><button onClick="window.location.assign('/monit/');">@Messages("console.button.system")</button></td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            renderCamera("webcam", "/webcam");
+        </script>
+    </body>
+</html>

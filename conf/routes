@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# UI pages
+GET        /                            controllers.Application.index
+GET        /archive                     controllers.Archive.index
+
+# API endpoints
+GET        /camera/image                controllers.Camera.image
+PUT        /door/:id/open               controllers.Door.open(id: Int)
+PUT        /motion/area_detected        controllers.Motion.motionDetected
+
+# Map static resources
+GET        /assets/*fileName            controllers.Assets.at(path="/public", fileName)
+GET        /media/*fileName             controllers.Archive.at(fileName)
