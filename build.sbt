@@ -18,7 +18,7 @@ packageDescription := "A longer description of your application"
 
 serverLoading in Debian := SystemV
 
-unmanagedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
+managedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
 
 libraryDependencies ++= Seq(
   jdbc,

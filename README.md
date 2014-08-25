@@ -35,7 +35,7 @@ Software Installation
 
 This routine will become more streamlined as I move these steps into Debian package dependencies and post-install scripts. Until then:
 
-If you are using the Raspberry Pi camera module, ensure you have also enabled Video4Linux support as documented in http://www.linux-projects.org/modules/sections/index.php?op=viewarticle&artid=16
+If you are using the Raspberry Pi camera module, ensure you have also enabled Video4Linux support as documented in http://www.linux-projects.org/modules/sections/index.php?op=viewarticle&artid=14
 
 1. Install Sun's Java Development Kit for ARM
     1. Obtain the tarball from http://www.oracle.com/technetwork/java/javase/downloads/index.html
