@@ -1,12 +1,68 @@
 <VirtualHost *:80>
+    WSGIDaemonProcess security user=www-data group=www-data processes=1 threads=4
+    WSGIScriptAlias /door /srv/garagesec/routes.py
+
+    WSGIDaemonProcess sprinkler user=www-data group=www-data processes=1 threads=4
+    WSGIScriptAlias /sprinkler /srv/sprinkler/routes.py
+
     ServerAdmin webmaster@localhost
+
+    Alias /media /home/motion
 
     AddExternalAuth pwauth /usr/sbin/pwauth
     SetExternalAuthMethod pwauth pipe
 
-    LogLevel warn
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    DocumentRoot /var/www
+
+    <Directory /var/www/>
+        AuthType Basic
+        AuthName "Garage Dashboard"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Directory>
+
+    <Directory /srv/sprinkler/>
+        AuthType Basic
+        AuthName "Sprinkler Switch"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+
+        WSGIProcessGroup sprinkler
+        WSGIApplicationGroup %{RESOURCE}
+    </Directory>
+
+    <Directory /srv/garagesec/>
+        AuthType Basic
+        AuthName "Garage Security"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+
+		    WSGIProcessGroup security
+      	WSGIApplicationGroup %{RESOURCE}
+    </Directory>
+
+    <Directory /home/motion/>
+		    Options Indexes Multiviews
+
+	    	AuthType Basic
+	    	AuthName "Garage Security"
+	    	AuthBasicProvider external
+	    	AuthExternal pwauth
+	    	Require valid-user
+    </Directory>
+
+	  ProxyPass /camera0 http://localhost:8081
+
+    <Location /camera0>
+		    AuthType Basic
+        AuthName "Garage Security"
+        AuthBasicProvider external
+        AuthExternal pwauth
+        Require valid-user
+    </Location>
 
     ProxyPass /monit http://localhost:2812
 
@@ -18,23 +74,9 @@
         Require valid-user
     </Location>
 
-    ProxyPass /webcam http://localhost:8081
+    ErrorLog ${APACHE_LOG_DIR}/error.log
 
-    <Location /webcam>
-        AuthType Basic
-        AuthName "Camera 0"
-        AuthBasicProvider external
-        AuthExternal pwauth
-        Require valid-user
-    </Location>
+    LogLevel warn
 
-    ProxyPass / http://localhost:9000/
-
-    <Location />
-        AuthType Basic
-        AuthName "Media Archive"
-        AuthBasicProvider external
-        AuthExternal pwauth
-        Require valid-user
-    </Location>
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>

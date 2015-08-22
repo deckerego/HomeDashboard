@@ -1,0 +1,6 @@
+[submodule "srv/GarageSecurity"]
+	path = srv/GarageSecurity
+	url = git@github.com:deckerego/GarageSecurity.git
+[submodule "srv/SprinklerSwitch"]
+	path = srv/SprinklerSwitch
+	url = git@github.com:deckerego/SprinklerSwitch.git
