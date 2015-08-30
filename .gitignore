@@ -36,3 +36,6 @@ nosetests.xml
 .pydevproject
 
 config.py
+
+# Skip Bower stuff
+bower_components/

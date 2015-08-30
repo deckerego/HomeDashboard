@@ -2,6 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<style type="text/css">
 			body { background:#FFFFFF; }
 			table { width: 100%; position: absolute; left: 0%; top: 40%; padding-left: 10px; padding-right: 10px; }
@@ -12,25 +16,44 @@
 	</head>
 
 	<body>
-		<h1>Garage Automation System</h1>
+		<div class="container theme-showcase" role="main">
+      <div class="page-header">
+        <h1>Home Dashboard</h1>
+      </div>
 
-		<table>
-			<tr>
-				<td>
-					<div class="button" onClick="window.location.assign('/door/');">
-						<img alt="Garage Security" src="garage.ico" />
-						<br/>
-						Garage Door
-					</div>
-				</td>
-				<td>
-					<div class="button" onClick="window.location.assign('/sprinkler/');">
-						<img alt="Sprinkler Switch" src="sprinkler.ico" />
-						<br/>
-						Sprinkler System
-					</div>
-				</td>
-			</tr>
-		</table>
+			<div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default" onclick="window.location.assign('/door/');">
+            <div class="panel-heading">
+              <h3 class="panel-title">Garage Door</h3>
+            </div>
+            <div class="panel-body">
+              Last Event: None
+            </div>
+          </div>
+
+          <div class="panel panel-primary" onclick="window.location.assign('/sprinkler/');">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sprinklers</h3>
+            </div>
+            <div class="panel-body">
+              Enabled
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="panel panel-success" onclick="window.location.assign('/monit/');">
+            <div class="panel-heading">
+              <h3 class="panel-title">System Status</h3>
+            </div>
+            <div class="panel-body">
+              Status: Online
+            </div>
+          </div>
+        </div>
+      </div>
+
+		</div>
 	</body>
 </html>
