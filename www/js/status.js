@@ -16,7 +16,7 @@ function doorStatus(doorTag) {
 
   request.onload = function(evt) {
     var response = JSON.parse(request.responseText);
-    document.getElementById(doorTag).innerHTML = response.datetime;
+    document.getElementById(doorTag).innerHTML = "Motion Detected: " + response.datetime;
   };
 
   request.send();
