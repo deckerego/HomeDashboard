@@ -1,10 +1,4 @@
 <VirtualHost *:80>
-    WSGIDaemonProcess security user=www-data group=www-data processes=1 threads=4
-    WSGIScriptAlias /door /srv/garagesec/routes.py
-
-    WSGIDaemonProcess sprinkler user=www-data group=www-data processes=1 threads=4
-    WSGIScriptAlias /sprinkler /srv/sprinkler/routes.py
-
     ServerAdmin webmaster@localhost
 
     Alias /media /home/motion
@@ -22,27 +16,25 @@
         Require valid-user
     </Directory>
 
-    <Directory /srv/sprinkler/>
+    ProxyPass /sprinkler http://localhost:9004
+
+    <Location /sprinkler>
         AuthType Basic
         AuthName "Sprinkler Switch"
         AuthBasicProvider external
         AuthExternal pwauth
         Require valid-user
+    </Location>
 
-        WSGIProcessGroup sprinkler
-        WSGIApplicationGroup %{RESOURCE}
-    </Directory>
+    ProxyPass /door http://localhost:9003
 
-    <Directory /srv/garagesec/>
+    <Location /door>
         AuthType Basic
         AuthName "Garage Security"
         AuthBasicProvider external
         AuthExternal pwauth
         Require valid-user
-
-		    WSGIProcessGroup security
-      	WSGIApplicationGroup %{RESOURCE}
-    </Directory>
+    </Location>
 
     <Directory /home/motion/>
 		    Options Indexes Multiviews
