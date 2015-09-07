@@ -29,7 +29,16 @@ function systemStatus(systemTag) {
   request.onload = function(evt) {
     var firstIdx = request.responseText.indexOf("red-text");
     var errors = request.responseText.indexOf("red-text", firstIdx + 1) > 0;
-    document.getElementById(systemTag).innerHTML = errors ? "Subsystem Errors" : "Online";
+    firstIdx = request.responseText.indexOf("gray-text");
+    var warnings = request.responseText.indexOf("gray-text", firstIdx + 1) > 0;
+
+    if(errors) {
+      document.getElementById(systemTag).innerHTML = "Subsystem Errors";
+    } else if(warnings) {
+      document.getElementById(systemTag).innerHTML = "Subsystem Warnings";
+    } else {
+      document.getElementById(systemTag).innerHTML = "Online";
+    }
   };
 
   request.send();

@@ -7,24 +7,17 @@
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="js/status.js"></script>
-		<style type="text/css">
-			body { background:#FFFFFF; }
-			table { width: 100%; position: absolute; left: 0%; top: 40%; padding-left: 10px; padding-right: 10px; }
-			td { width: 50%; text-align: center }
-			img { padding: 10px; }
-			.button { background-color: #aaaaaa; border-radius: 6px; border: 1px solid #aaaaaa; padding: 10px; font-family: Arial; font-size: 24px; font-weight: bold; font-style: normal; text-align: center; text-shadow: 1px 1px 0px #aaaaaa; }
-		</style>
 	</head>
 
 	<body>
-		<div class="container theme-showcase" role="main">
+		<div class="container" role="main">
       <div class="page-header">
         <h1>Home Dashboard</h1>
       </div>
 
 			<div class="row">
         <div class="col-md-6">
-          <div class="panel panel-default" onclick="window.location.assign('/door/');">
+          <div class="panel panel-primary" onclick="window.location.assign('/door/');">
             <div class="panel-heading"><h3 class="panel-title">Garage Door</h3></div>
             <div id="doorStatus" class="panel-body">Unknown</div>
           </div>
@@ -36,7 +29,7 @@
         </div>
 
         <div class="col-md-6">
-          <div class="panel panel-success" onclick="window.location.assign('/monit/');">
+          <div class="panel panel-info" onclick="window.location.assign('/monit/');">
             <div class="panel-heading"><h3 class="panel-title">System Status</h3></div>
             <div id="systemStatus" class="panel-body">Unknown</div>
           </div>
