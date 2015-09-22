@@ -37,8 +37,6 @@
     </Location>
 
     <Directory /home/motion/>
-		    Options Indexes Multiviews
-
 	    	AuthType Basic
 	    	AuthName "Garage Security"
 	    	AuthBasicProvider external
