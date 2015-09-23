@@ -1,0 +1,7 @@
+check host gateway with address 192.168.1.1
+	start "/usr/sbin/service networking start"
+	stop "/usr/sbin/service networking stop"
+	if failed icmp type echo count 5 with timeout 10 seconds
+	then restart
+	if 2 restarts within 3 cycles
+	then exec /sbin/reboot
