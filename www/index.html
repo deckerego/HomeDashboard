@@ -17,19 +17,19 @@
 
 			<div class="row">
         <div class="col-md-6">
-          <div class="panel panel-primary" onclick="window.location.assign('/door/');">
+          <div class="panel panel-primary" onclick="navigateTo(this, '/door/');">
             <div class="panel-heading"><h3 class="panel-title">Garage Door</h3></div>
             <div id="doorStatus" class="panel-body">Unknown</div>
           </div>
 
-          <div class="panel panel-primary" onclick="window.location.assign('/sprinkler/');">
+          <div class="panel panel-primary" onclick="navigateTo(this, '/sprinkler/');">
             <div class="panel-heading"><h3 class="panel-title">Sprinklers</h3></div>
             <div id="sprinklerStatus" class="panel-body">Unknown</div>
           </div>
         </div>
 
         <div class="col-md-6">
-          <div class="panel panel-info" onclick="window.location.assign('/monit/');">
+          <div id="systemPanel" class="panel panel-info" onclick="navigateTo(this, '/monit/');">
             <div class="panel-heading"><h3 class="panel-title">System Status</h3></div>
             <div id="systemStatus" class="panel-body">Unknown</div>
           </div>
@@ -40,7 +40,7 @@
 		<script type="text/javascript">
 			doorStatus("doorStatus");
 			sprinklerStatus("sprinklerStatus");
-			systemStatus("systemStatus");
+			systemStatus("systemPanel", "systemStatus");
 		</script>
 	</body>
 </html>

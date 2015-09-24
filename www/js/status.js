@@ -22,7 +22,7 @@ function doorStatus(doorTag) {
   request.send();
 }
 
-function systemStatus(systemTag) {
+function systemStatus(systemPanel, systemTag) {
   var request = new XMLHttpRequest();
   request.open("GET", "monit/", true);
 
@@ -34,12 +34,20 @@ function systemStatus(systemTag) {
 
     if(errors) {
       document.getElementById(systemTag).innerHTML = "Subsystem Errors";
+      document.getElementById(systemPanel).className = "panel panel-danger";
     } else if(warnings) {
       document.getElementById(systemTag).innerHTML = "Subsystem Warnings";
+      document.getElementById(systemPanel).className = "panel panel-warning";
     } else {
       document.getElementById(systemTag).innerHTML = "Online";
+      document.getElementById(systemPanel).className = "panel panel-success";
     }
   };
 
   request.send();
+}
+
+function navigateTo(panel, path) {
+  panel.className = "panel panel-default";
+  window.location.assign(path);
 }
