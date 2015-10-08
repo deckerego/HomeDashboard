@@ -31,17 +31,17 @@ function systemStatus(systemPanel, systemTag) {
     var errors = request.responseText.indexOf("red-text", firstIdx + 1) > 0;
     firstIdx = request.responseText.indexOf("gray-text");
     var warnings = request.responseText.indexOf("gray-text", firstIdx + 1) > 0;
+    var uptime = request.responseText.match(/<i>uptime.*&nbsp;<\/i>/)[0].match(/uptime.*m/)[0]
 
     if(errors) {
-      document.getElementById(systemTag).innerHTML = "Subsystem Errors";
       document.getElementById(systemPanel).className = "panel panel-danger";
     } else if(warnings) {
-      document.getElementById(systemTag).innerHTML = "Subsystem Warnings";
       document.getElementById(systemPanel).className = "panel panel-warning";
     } else {
-      document.getElementById(systemTag).innerHTML = "Online";
       document.getElementById(systemPanel).className = "panel panel-success";
     }
+
+    document.getElementById(systemTag).innerHTML = uptime
   };
 
   request.send();
